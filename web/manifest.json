@@ -1,6 +1,6 @@
 {
-    "name": "group_project",
-    "short_name": "group_project",
+    "name": "project3",
+    "short_name": "project3",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
