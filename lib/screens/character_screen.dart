@@ -11,6 +11,14 @@ class CharacterScreen extends StatefulWidget {
 }
 
 class _CharacterScreenState extends State<CharacterScreen> {
+  late Future<List<ProductDataModel>> _futureCharacters;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureCharacters = readJsonData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +26,11 @@ class _CharacterScreenState extends State<CharacterScreen> {
         title: Text('Characters'),
       ),
       body: FutureBuilder<List<ProductDataModel>>(
-        future: readJsonData(),
+        future: _futureCharacters,
         builder: (context, snapshot) {
-          if (snapshot.hasError) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}"));
           } else if (snapshot.hasData) {
             var items = snapshot.data!;
@@ -30,53 +40,95 @@ class _CharacterScreenState extends State<CharacterScreen> {
                 return Card(
                   elevation: 5,
                   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  child: Container(
-                    padding: EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          child: Image.network(
-                            items[index].imageURL!,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.only(bottom: 8),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 8, right: 8),
-                                  child: Text(
-                                    items[index].name!,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 8, right: 8),
-                                  child: Text(items[index].price!),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(items[index].imageURL ?? ''),
                     ),
+                    title: Text(items[index].playerName ?? ''),
+                    subtitle: Text('Class: ${items[index].characterClass ?? ''}, Level: ${items[index].level ?? ''}',),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Character Details'),
+                            content: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Name: ${items[index].name ?? ''}'),
+                                  Text('Background: ${items[index].background ?? ''}'),
+                                  Text('Race: ${items[index].race ?? ''}'),
+                                  Text('Alignment: ${items[index].alignment ?? ''}'),
+                                  Text('Exp: ${items[index].exp ?? ''}'),
+                                  Text('Ac: ${items[index].ac ?? ''}'),
+                                  Text('Initiative: ${items[index].initiative ?? ''}'),
+                                  Text('Speed: ${items[index].speed ?? ''}'),
+                                  Text('Max Hit Points: ${items[index].hpMax ?? ''}'),
+                                  Text('Current HP: ${items[index].currentHP ?? ''}'),
+                                  Text('Temporary HP: ${items[index].temporaryHP ?? ''}'),
+                                  Text('Hit Dice: ${items[index].hitDice ?? ''}'),
+                                  Text('Inventory: ${items[index].inventory ?? ''}'),
+                                  Text('Personality Traits: ${items[index].personalityTraits ?? ''}'),
+                                  Text('Ideals: ${items[index].ideals ?? ''}'),
+                                  Text('Bonds: ${items[index].bonds ?? ''}'),
+                                  Text('Flaws: ${items[index].flaws ?? ''}'),
+                                  Text('Strength: ${items[index].strength ?? ''}'),
+                                  Text('Dexterity: ${items[index].dexterity ?? ''}'),
+                                  Text('Constitution: ${items[index].constitution ?? ''}'),
+                                  Text('Intelligence: ${items[index].intelligence ?? ''}'),
+                                  Text('Wisdom: ${items[index].wisdom ?? ''}'),
+                                  Text('Charisma: ${items[index].charisma ?? ''}'),
+                                  Text('Saving Throw Strength: ${items[index].stStrength ?? ''}'),
+                                  Text('Saving Throw Dexterity: ${items[index].stDexterity ?? ''}'),
+                                  Text('Saving Throw Constitution: ${items[index].stConstitution ?? ''}'),
+                                  Text('Saving Throw Intelligence: ${items[index].stIntelligence ?? ''}'),
+                                  Text('Saving Throw Wisdom: ${items[index].stWisdom ?? ''}'),
+                                  Text('Saving Throw Charisma: ${items[index].stCharisma ?? ''}'),
+                                  Text('Skill Acrobatics: ${items[index].acrobatics ?? ''}'),
+                                  Text('Skill Animal Handling: ${items[index].animalHand ?? ''}'),
+                                  Text('Skill Athletics: ${items[index].athletics ?? ''}'),
+                                  Text('Skill Deception: ${items[index].deception ?? ''}'),
+                                  Text('Skill History: ${items[index].history ?? ''}'),
+                                  Text('Skill Insight: ${items[index].insight ?? ''}'),
+                                  Text('Skill Intimidation: ${items[index].intimidation ?? ''}'),
+                                  Text('Skill Investigation: ${items[index].investigation ?? ''}'),
+                                  Text('Skill Medicine: ${items[index].medicine ?? ''}'),
+                                  Text('Skill Nature: ${items[index].nature ?? ''}'),
+                                  Text('Skill Perception: ${items[index].perception ?? ''}'),
+                                  Text('Skill Performance: ${items[index].performance ?? ''}'),
+                                  Text('Skill Persuasion: ${items[index].persuasion ?? ''}'),
+                                  Text('Skill Religion: ${items[index].religion ?? ''}'),
+                                  Text('Skill Sleight Of Hand: ${items[index].sleightHand ?? ''}'),
+                                  Text('Skill Stealth: ${items[index].stealth ?? ''}'),
+                                  Text('Skill Survival: ${items[index].survival ?? ''}'),
+                                  Text('Character Appearance: ${items[index].characterAppearance ?? ''}'),
+                                  Text('Allies And Organization: ${items[index].alliesAndOrg ?? ''}'),
+                                  Text('Backstory: ${items[index].backstory ?? ''}'),
+                                  Text('Features Or Traits: ${items[index].featuresOrTraits ?? ''}'),
+                                  Text('Treasure: ${items[index].treasure ?? ''}'),
+                                  
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
                 );
               },
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: Text("No data available"));
           }
         },
       ),
@@ -85,8 +137,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
 
   Future<List<ProductDataModel>> readJsonData() async {
     try {
-      final jsondata =
-          await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
+      final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
       final list = json.decode(jsondata) as List<dynamic>;
 
       return list.map((e) => ProductDataModel.fromJson(e)).toList();
