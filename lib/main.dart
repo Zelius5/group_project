@@ -47,12 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
+      body: Center(
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Container(),
-          ), // To push buttons to the bottom
           // Character sheet button
           ElevatedButton(
             onPressed: () {
@@ -70,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           const SizedBox(height: 20), // Adjust as needed for spacing
         ],
+        ),
       ),
     );
   }
