@@ -1,43 +1,52 @@
 import 'package:flutter/material.dart';
 
-class SettingsScreen extends StatelessWidget {
+
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
+
+  @override
+    _SettingsScreenState createState() => _SettingsScreenState();
+  }
+
+class _SettingsScreenState extends State<SettingsScreen> {
+
+  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Accessibility Settings',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Display Settings',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SwitchListTile(
-              title: Text('Dark Mode'),
-              value: false, 
+            Text('Light/Dark mode: ', style: TextStyle(color: isSwitched ? Colors.white : Colors.black)),
+            Switch(
+              value: isSwitched, 
               onChanged: (value) {
-                //TODO, put dark mode logic here
-              },
+                setState((){isSwitched = !isSwitched;});
+              }
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Font Settings',
               style: TextStyle(
                 fontSize: 20,
@@ -45,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(labelText: 'Font Size'),
+              decoration: const InputDecoration(labelText: 'Font Size'),
               value: 'Normal', 
               onChanged: (value) {
                 //Font size logic here
@@ -57,9 +66,9 @@ class SettingsScreen extends StatelessWidget {
                       ))
                   .toList(),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(labelText: 'Font Style'),
+              decoration: const InputDecoration(labelText: 'Font Style'),
               value: 'Arial', 
               onChanged: (value) {
                 // font style logic here
