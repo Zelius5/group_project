@@ -56,6 +56,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  // TODO - Move to character_overview.dart
                                   Text('Name: ${items[index].name ?? ''}'),
                                   Text('Background: ${items[index].background ?? ''}'),
                                   Text('Race: ${items[index].race ?? ''}'),
@@ -68,11 +69,13 @@ class _CharacterScreenState extends State<CharacterScreen> {
                                   Text('Current HP: ${items[index].currentHP ?? ''}'),
                                   Text('Temporary HP: ${items[index].temporaryHP ?? ''}'),
                                   Text('Hit Dice: ${items[index].hitDice ?? ''}'),
+                                  // TODO - Move to character_bio.dart
                                   Text('Inventory: ${items[index].inventory ?? ''}'),
                                   Text('Personality Traits: ${items[index].personalityTraits ?? ''}'),
                                   Text('Ideals: ${items[index].ideals ?? ''}'),
                                   Text('Bonds: ${items[index].bonds ?? ''}'),
                                   Text('Flaws: ${items[index].flaws ?? ''}'),
+                                  // TODO - Move to character_stats.dart
                                   Text('Strength: ${items[index].strength ?? ''}'),
                                   Text('Dexterity: ${items[index].dexterity ?? ''}'),
                                   Text('Constitution: ${items[index].constitution ?? ''}'),
@@ -102,6 +105,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
                                   Text('Skill Sleight Of Hand: ${items[index].sleightHand ?? ''}'),
                                   Text('Skill Stealth: ${items[index].stealth ?? ''}'),
                                   Text('Skill Survival: ${items[index].survival ?? ''}'),
+                                  // TODO - Move to character_extras.dart
                                   Text('Character Appearance: ${items[index].characterAppearance ?? ''}'),
                                   Text('Allies And Organization: ${items[index].alliesAndOrg ?? ''}'),
                                   Text('Backstory: ${items[index].backstory ?? ''}'),
