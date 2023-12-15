@@ -21,6 +21,7 @@ class CharacterStatsScreen extends StatefulWidget {
 class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
 
+  // ignore: unused_field
   int _currentIndex = 0;
   @override
   void initState() {
@@ -84,120 +85,120 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                         SizedBox(height: 10), // Add space between rows
                         Row(//#1
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.strength != null ? selectedCharacter.strength.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Strength',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
 
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Row(//#2
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.dexterity != null ? selectedCharacter.dexterity.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Dexterity',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
 
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Row(//#3
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.constitution != null ? selectedCharacter.constitution.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Consitution',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
 
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Row(//#4
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.intelligence != null ? selectedCharacter.intelligence.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Intelligence',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
 
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Row(//#5
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.wisdom != null ? selectedCharacter.wisdom.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Wisdom',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
 
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Row(//#6
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.charisma != null ? selectedCharacter.charisma.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Charisma',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
 
                         ),
@@ -211,17 +212,17 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(//#1
                           children: [
-                            SizedBox(width: 200),
+                            const SizedBox(width: 200),
                             Container(
-                              padding: EdgeInsets.all(8.0), // Add padding as needed
+                              padding: const EdgeInsets.all(8.0), // Add padding as needed
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.blue, width: 2.0), // Add a border
                                 borderRadius: BorderRadius.circular(8.0), // Optional: Add border radius
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Saving Throws / Skill Checks',
                                 style: TextStyle(
                                   fontSize: 18,
@@ -230,387 +231,387 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
                         Row(//#2
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.stStrength != null ? selectedCharacter.stStrength.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Strength',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.stConstitution != null ? selectedCharacter.stConstitution.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Constiution',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                          SizedBox(width: 50),
+                          const SizedBox(width: 50),
                           ],
                           
                         ),
                         Row(//#3
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.athletics != null ? selectedCharacter.athletics.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Athlethics',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 355),
+                            const SizedBox(width: 355),
                           ],
                         ),
                         Row(//#4
                           children: [
-                            SizedBox(width: 355),
+                            const SizedBox(width: 355),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.stCharisma != null ? selectedCharacter.stCharisma.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Charisma',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#5
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.stDexterity != null ? selectedCharacter.stDexterity.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Dexterity',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.deception != null ? selectedCharacter.deception.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Deception',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#6
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.acrobatics != null ? selectedCharacter.acrobatics.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Acrobatics',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.intimidation != null ? selectedCharacter.intimidation.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Intimidation',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#7
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.sleightHand != null ? selectedCharacter.sleightHand.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Sleight of Hand',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.performance != null ? selectedCharacter.performance.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Performance',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#8
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.stealth != null ? selectedCharacter.stealth.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Stealth',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                          SizedBox(width: 50),
+                          const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.persuasion != null ? selectedCharacter.persuasion.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Persuasion',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
-                        SizedBox(height: 50),
+                        const SizedBox(height: 50),
                         Row(//#9
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.stIntelligence != null ? selectedCharacter.stIntelligence.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Intelligence',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.stWisdom != null ? selectedCharacter.stWisdom.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Wisdom',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#10
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.arcana != null ? selectedCharacter.arcana.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Arcana',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                          SizedBox(width: 50),
+                          const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.animalHand != null ? selectedCharacter.animalHand.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Animal Handling',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#11
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.investigation != null ? selectedCharacter.investigation.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Investigation',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.insight != null ? selectedCharacter.insight.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Insight',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#11
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.history != null ? selectedCharacter.history.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'History',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.medicine != null ? selectedCharacter.medicine.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Medicine',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#11
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.nature != null ? selectedCharacter.nature.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Nature',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.perception != null ? selectedCharacter.perception.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Perception',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                         Row(//#11
                           children: [
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.religion != null ? selectedCharacter.religion.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Religion',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                            SizedBox(width: 50),
+                            const SizedBox(width: 50),
                             Expanded(
                               child: TextField(
                                 textAlign: TextAlign.left,
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.survival != null ? selectedCharacter.survival.toString() : ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           labelText: 'Survival',
                           border: OutlineInputBorder(),
                           ),                         
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: dynamicFontSizeText),
                               ),
                             ),
-                           SizedBox(width: 50),
+                           const SizedBox(width: 50),
                           ],
                         ),
                       ],
@@ -622,17 +623,18 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
           );
             
           } else if (snapshot.hasError) {
-            return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: 16)));
+            return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
+        currentIndex: _currentIndex = 1,
+        
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Color.fromARGB(255, 8, 0, 2),
+        unselectedItemColor: const Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
           setState(() {
             _currentIndex = index;

@@ -172,7 +172,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
       ),
        bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
+        currentIndex: _currentIndex = 2,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: const Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
@@ -187,7 +187,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
             case 1:
               navigateStatsScreen(context, widget.characterId);
               break;
-            case 2:
+            case 2:            
               break;
             case 3:
               navigateSpellsScreen(context, widget.characterId);

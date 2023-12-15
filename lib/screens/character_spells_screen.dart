@@ -101,7 +101,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
+        currentIndex: _currentIndex = 3,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: const Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
