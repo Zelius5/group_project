@@ -296,7 +296,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
           // Handle navigation to different screens based on the index
           switch (index) {
             case 0:
-              navigateBioScreen(context);
+              navigateOverviewScreen(context);
               break;
             case 1:
               navigateStatsScreen(context);
@@ -307,7 +307,9 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
             case 3:
               navigateSpellsScreen(context);
               break;
-            
+            case 4:
+              navigateBioScreen(context);
+              break;
           }
         },
         
