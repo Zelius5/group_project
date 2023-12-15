@@ -29,7 +29,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
     super.initState();
     _futureCharacters = readJsonData();
   }
-
+  //following lines are declaration for functions to be used in navbar navigation
   void navigateExtraScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterExtrasScreen(characterId: id);
@@ -50,7 +50,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
       return CharacterStatsScreen(characterId: id);
     }));
   }
-
+  //main code to read out of the json
   Future<List<ProductDataModel>> readJsonData() async {
     final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
     final list = json.decode(jsondata) as List<dynamic>;
@@ -71,6 +71,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
               (character) => character.id == widget.characterId,
               orElse: () => ProductDataModel(), 
             );
+            //this is where we create the column, textbox and we retrieve the spells
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +81,6 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
                           minLines: 1,
                           maxLines: 20,
                           readOnly: false,
-                          //TODO - Add "Spells" to the JSON file and change this textfield to spells
                           controller: TextEditingController(text: selectedCharacter.spells ?? ''),
                           decoration: const InputDecoration(
                             labelText: 'Spells',
@@ -99,6 +99,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
           }
         },
       ),
+      //set up for the navbar at the bottom
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex = 3,
@@ -108,7 +109,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
           setState(() {
             _currentIndex = index;
           });
-          // Handle navigation to different screens based on the index
+          // Handle navigation to different screens based on the index along with pushing the id in order to pull information 
           switch (index) {
             case 0:
               navigateOverviewScreen(context, widget.characterId);
@@ -126,7 +127,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
               break;
           }
         },
-        
+        //this is where buttons and icons are laid out in navbar
         items:const <BottomNavigationBarItem> [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
