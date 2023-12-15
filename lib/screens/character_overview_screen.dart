@@ -42,11 +42,6 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
       return CharacterSpellsScreen();
     }));
   }
-  void navigateOverviewScreen(BuildContext ctx) {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterOverviewScreen();
-    }));
-  }
   void navigateStatsScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterStatsScreen();
@@ -296,7 +291,6 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
           // Handle navigation to different screens based on the index
           switch (index) {
             case 0:
-              navigateOverviewScreen(context);
               break;
             case 1:
               navigateStatsScreen(context);
