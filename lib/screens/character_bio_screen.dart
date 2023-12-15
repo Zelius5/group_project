@@ -8,6 +8,7 @@ import 'character_extras_screen.dart';
 import 'character_spells_screen.dart';
 import 'character_stats_screen.dart';
 
+
 class CharacterBioScreen extends StatefulWidget {
 
   final int? characterId;
@@ -29,24 +30,26 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
     _futureCharacters = readJsonData();
   }
 
-  void navigateExtraScreen(BuildContext ctx) {
+  
+
+  void navigateExtraScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterExtrasScreen();
+      return CharacterExtrasScreen(characterId: id);
     }));
   }
-  void navigateSpellsScreen(BuildContext ctx) {
+  void navigateSpellsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterSpellsScreen();
+      return CharacterSpellsScreen(characterId: id);
     }));
   }
-  void navigateOverviewScreen(BuildContext ctx) {
+  void navigateOverviewScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterOverviewScreen();
+      return CharacterOverviewScreen(characterId: id);
     }));
   }
-  void navigateStatsScreen(BuildContext ctx) {
+  void navigateStatsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterStatsScreen();
+      return CharacterStatsScreen(characterId: id);
     }));
   }
 
@@ -55,6 +58,7 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
     final list = json.decode(jsondata) as List<dynamic>;
     return list.map((e) => ProductDataModel.fromJson(e)).toList();
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -75,84 +79,84 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(//#1
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.personalityTraits ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Personality',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.ideals ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Ideals',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ]
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(//#1
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.bonds ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Bonds',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.flaws ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Flaws',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ]
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Row(
                     children: [
-                    SizedBox(width: 50),
+                    const SizedBox(width: 50),
                     Expanded(
                       child: TextField(
                         minLines: 1,
                         maxLines: 15,
                         readOnly: false,
                         controller: TextEditingController(text: selectedCharacter.inventory ?? ''),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Inventory',
                           border: OutlineInputBorder(),
                         ),
                         style: TextStyle(fontSize: dynamicFontSizeText)
                       ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ],
                   ),
                   
@@ -162,7 +166,7 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
           }else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -170,24 +174,25 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Color.fromARGB(255, 8, 0, 2),
+        unselectedItemColor: const Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
+            
           });
           // Handle navigation to different screens based on the index
           switch (index) {
             case 0:
-              navigateOverviewScreen(context);
+              navigateOverviewScreen(context, widget.characterId);
               break;
             case 1:
-              navigateStatsScreen(context);
+              navigateStatsScreen(context, widget.characterId);
               break;
             case 2:
-              navigateExtraScreen(context);
+              navigateExtraScreen(context, widget.characterId);
               break;
             case 3:
-              navigateSpellsScreen(context);
+              navigateSpellsScreen(context, widget.characterId);
               break;
             case 4:
               break;

@@ -10,7 +10,7 @@ import 'character_spells_screen.dart';
 import 'character_extras_screen.dart';
 
 class CharacterStatsScreen extends StatefulWidget {
-  final characterId;
+  final int? characterId;
 
   const CharacterStatsScreen({Key? key, this.characterId}) : super(key: key);
 
@@ -36,25 +36,25 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
   
   void navigateBioScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterBioScreen();
+      return CharacterBioScreen(characterId: id);
     }));
   }
   
   void navigateSpellsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterSpellsScreen();
+      return CharacterSpellsScreen(characterId: id);
     }));
   }
   
   void navigateOverviewScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterOverviewScreen();
+      return CharacterOverviewScreen(characterId: id);
     }));
   }
   
   void navigateExtraScreen(BuildContext ctx,int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterExtrasScreen();
+      return CharacterExtrasScreen(characterId: id);
     }));
   }
 

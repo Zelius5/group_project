@@ -30,24 +30,24 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
     _futureCharacters = readJsonData();
   }
 
-  void navigateExtraScreen(BuildContext ctx) {
+  void navigateExtraScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterExtrasScreen();
+      return CharacterExtrasScreen(characterId: id);
     }));
   }
-  void navigateBioScreen(BuildContext ctx) {
+  void navigateBioScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterBioScreen();
+      return CharacterBioScreen(characterId: id);
     }));
   }
-  void navigateOverviewScreen(BuildContext ctx) {
+  void navigateOverviewScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterOverviewScreen();
+      return CharacterOverviewScreen(characterId: id);
     }));
   }
-  void navigateStatsScreen(BuildContext ctx) {
+  void navigateStatsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterStatsScreen();
+      return CharacterStatsScreen(characterId: id);
     }));
   }
 
@@ -75,27 +75,27 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(width:50, height: 50),
+                  const SizedBox(width:50, height: 50),
                   Expanded(child: TextField(
                           minLines: 1,
                           maxLines: 20,
                           readOnly: false,
                           //TODO - Add "Spells" to the JSON file and change this textfield to spells
                           controller: TextEditingController(text: selectedCharacter.background ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Spells',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),),
-                  SizedBox(height: 50, width: 50),
+                  const SizedBox(height: 50, width: 50),
                 ],
               )
             );
           }else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -103,7 +103,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Color.fromARGB(255, 8, 0, 2),
+        unselectedItemColor: const Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
@@ -111,18 +111,18 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
           // Handle navigation to different screens based on the index
           switch (index) {
             case 0:
-              navigateOverviewScreen(context);
+              navigateOverviewScreen(context, widget.characterId);
               break;
             case 1:
-              navigateStatsScreen(context);
+              navigateStatsScreen(context, widget.characterId);
               break;
             case 2:
-              navigateExtraScreen(context);
+              navigateExtraScreen(context, widget.characterId);
               break;
             case 3:
               break;
             case 4:
-              navigateBioScreen(context);
+              navigateBioScreen(context, widget.characterId);
               break;
           }
         },

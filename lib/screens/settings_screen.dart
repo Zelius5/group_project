@@ -63,36 +63,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            /*
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Font Size'),
-              value: dynamicFontSizeText, 
-              onChanged: (value) {
-                //Font size logic here
-                
-              },
-              items: ['Small', 'Normal', 'Large']
-                  .map((size) => DropdownMenuItem(
-                        value: size,
-                        child: Text(size),
-                      ))
-                  .toList(),
-            ),
-            const SizedBox(height: 10),
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Font Style'),
-              value: 'Arial', 
-              onChanged: (value) {
-                // font style logic here
-              },
-              items: ['Arial', 'Times New Roman', 'Roboto']
-                  .map((style) => DropdownMenuItem(
-                        value: style,
-                        child: Text(style),
-                      ))
-                  .toList(),
-            ),
-            */
               ElevatedButton(
               onPressed: () {
                 setState((){

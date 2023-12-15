@@ -12,11 +12,14 @@ import 'character_stats_screen.dart';
 class CharacterExtrasScreen extends StatefulWidget {
 
   final int? characterId;
+  
 
   const CharacterExtrasScreen({Key? key, this.characterId}) : super(key: key);
 
+
   @override
   _CharacterExtrasScreenState createState() => _CharacterExtrasScreenState();
+
 }
 
 class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
@@ -30,24 +33,24 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
     _futureCharacters = readJsonData();
   }
 
-  void navigateBioScreen(BuildContext ctx) {
+  void navigateBioScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterBioScreen();
+      return CharacterBioScreen(characterId: id);
     }));
   }
-  void navigateSpellsScreen(BuildContext ctx) {
+  void navigateSpellsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterSpellsScreen();
+      return CharacterSpellsScreen(characterId: id);
     }));
   }
-  void navigateOverviewScreen(BuildContext ctx) {
+  void navigateOverviewScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterOverviewScreen();
+      return CharacterOverviewScreen(characterId: id);
     }));
   }
-  void navigateStatsScreen(BuildContext ctx) {
+  void navigateStatsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterStatsScreen();
+      return CharacterStatsScreen(characterId: id);
     }));
   }
 
@@ -56,6 +59,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
     final list = json.decode(jsondata) as List<dynamic>;
     return list.map((e) => ProductDataModel.fromJson(e)).toList();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,84 +79,84 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(//#1
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.characterAppearance ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Appearance',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.alliesAndOrg ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Allies',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ]
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(//#1
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.backstory ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Backstory',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.treasure ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Treasure',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ]
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Row(
                     children: [
-                    SizedBox(width: 50),
+                    const SizedBox(width: 50),
                     Expanded(
                       child: TextField(
                         minLines: 1,
                         maxLines: 15,
                         readOnly: false,
                         controller: TextEditingController(text: selectedCharacter.featuresOrTraits ?? ''),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Features/Traits',
                           border: OutlineInputBorder(),
                         ),
                         style: TextStyle(fontSize: dynamicFontSizeText)
                       ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ],
                   ),
                   
@@ -162,7 +166,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
           }else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -170,7 +174,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Color.fromARGB(255, 8, 0, 2),
+        unselectedItemColor: const Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
@@ -178,18 +182,18 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
           // Handle navigation to different screens based on the index
           switch (index) {
             case 0:
-              navigateOverviewScreen(context);
+              navigateOverviewScreen(context, widget.characterId);
               break;
             case 1:
-              navigateStatsScreen(context);
+              navigateStatsScreen(context, widget.characterId);
               break;
             case 2:
               break;
             case 3:
-              navigateSpellsScreen(context);
+              navigateSpellsScreen(context, widget.characterId);
               break;
             case 4:
-              navigateBioScreen(context);
+              navigateBioScreen(context, widget.characterId);
               break;
           }
         },
