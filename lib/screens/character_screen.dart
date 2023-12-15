@@ -3,6 +3,7 @@ import '/screens/character_overview_screen.dart';
 import 'package:project3/ProductDataModel.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
+import '/screens/settings_screen.dart';
 
 class CharacterScreen extends StatefulWidget {
   const CharacterScreen({Key? key}) : super(key: key);
@@ -32,8 +33,16 @@ class _CharacterScreenState extends State<CharacterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      theme: isSwitched ? ThemeData.dark() : ThemeData.light(),
+      home: Scaffold(
       appBar: AppBar(
+        leading: InkWell(onTap: (){ Navigator.pop(context);},
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+        ),
         title: Text('Characters'),
       ),
       body: FutureBuilder<List<ProductDataModel>>(
@@ -42,7 +51,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text("${snapshot.error}"));
+            return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else if (snapshot.hasData) {
             var items = snapshot.data!;
             return ListView.builder(
@@ -56,8 +65,8 @@ class _CharacterScreenState extends State<CharacterScreen> {
                       backgroundImage: NetworkImage(items[index].imageURL ?? ''),
                     ),
                     
-                    title: Text(items[index].playerName ?? ''),
-                    subtitle: Text('Class: ${items[index].characterClass ?? ''}, Level: ${items[index].level ?? ''}',),
+                    title: Text(items[index].playerName ?? '', style: TextStyle(fontSize: dynamicFontSizeText)),
+                    subtitle: Text('Class: ${items[index].characterClass ?? ''}, Level: ${items[index].level ?? ''}', style: TextStyle(fontSize: dynamicFontSizeText)),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -71,10 +80,11 @@ class _CharacterScreenState extends State<CharacterScreen> {
               },
             );
           } else {
-            return Center(child: Text("No data available"));
+            return Center(child: Text("No data available", style: TextStyle(fontSize: dynamicFontSizeText)));
           }
         },
       ),
+    )
     );
   }
 

@@ -12,14 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Character Sheet',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: isSwitched ? ThemeData.dark() : ThemeData.light(),
+      title:'Character Sheet',
       home: const MyHomePage(title: 'Character Sheet'),
     );
   }
 }
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -30,8 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
-  bool isSwitched = false;
 
   void navigateSettingsScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
@@ -46,7 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      theme: isSwitched ? ThemeData.dark() : ThemeData.light(),
+      home: Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text("D&D 5E Character Sheet", style: TextStyle(fontSize: 30)),
           // Character sheet button
           ElevatedButton(
             onPressed: () {
@@ -73,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         ),
       ),
+    )
     );
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+bool isSwitched = false;
+double dynamicFontSizeText = 14;
+double dynamicFontSizeHeader = 20;
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -10,12 +13,19 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
 
-  bool isSwitched = false;
+  
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return MaterialApp(
+      theme: isSwitched ? ThemeData.dark() : ThemeData.light(),
+      home: Scaffold(appBar: AppBar(
+        leading: InkWell(onTap: (){ Navigator.pop(context);},
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+        ),
         title: const Text('Settings'),
       ),
       body: Padding(
@@ -23,41 +33,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Accessibility Settings',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: dynamicFontSizeHeader,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Display Settings',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: dynamicFontSizeHeader,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text('Light/Dark mode: ', style: TextStyle(color: isSwitched ? Colors.white : Colors.black)),
+            Text('Light/Dark mode: ', style: TextStyle(color: isSwitched ? Colors.white : Colors.black, fontSize: dynamicFontSizeText)),
             Switch(
               value: isSwitched, 
               onChanged: (value) {
-                setState((){isSwitched = !isSwitched;});
+                setState((){isSwitched = value;});
               }
             ),
             const SizedBox(height: 20),
-            const Text(
+             Text(
               'Font Settings',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: dynamicFontSizeText,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            /*
             DropdownButtonFormField<String>(
               decoration: const InputDecoration(labelText: 'Font Size'),
-              value: 'Normal', 
+              value: dynamicFontSizeText, 
               onChanged: (value) {
                 //Font size logic here
+                
               },
               items: ['Small', 'Normal', 'Large']
                   .map((size) => DropdownMenuItem(
@@ -80,9 +92,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ))
                   .toList(),
             ),
+            */
+              ElevatedButton(
+              onPressed: () {
+                setState((){
+                  dynamicFontSizeText = 10;
+                  dynamicFontSizeHeader = 16;});
+              },
+              child: Text('Small', style: TextStyle(fontWeight: FontWeight.bold, fontSize: dynamicFontSizeText)),
+            ),
+            const SizedBox(height: 20), // Adjust as needed for spacing
+            ElevatedButton(
+              onPressed: () {
+                setState((){
+                  dynamicFontSizeText = 14;
+                  dynamicFontSizeHeader = 20;});
+              },
+              child: Text('Normal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: dynamicFontSizeText)),
+            ),
+            const SizedBox(height: 20), // Adjust as needed for spacing
+            ElevatedButton(
+              onPressed: () {
+                setState((){
+                  dynamicFontSizeText = 18;
+                  dynamicFontSizeHeader = 24;});
+              },
+              child: Text('Large', style: TextStyle(fontWeight: FontWeight.bold, fontSize: dynamicFontSizeText)),
+            ),
           ],
         ),
       ),
+      )
     );
   }
+
 }
