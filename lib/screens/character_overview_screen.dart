@@ -4,7 +4,6 @@ import 'package:project3/ProductDataModel.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart' as rootBundle;
-import 'package:project3/screens/character_overview_screen.dart';
 import 'package:project3/screens/character_bio_screen.dart';
 import 'package:project3/screens/character_extras_screen.dart';
 import 'package:project3/screens/character_spells_screen.dart';
@@ -28,7 +27,6 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
   void initState() {
     super.initState();
     _futureCharacters = readJsonData();
-    late TextEditingController nameController;
   }
 
   void navigateExtraScreen(BuildContext ctx, int? id) {
