@@ -15,7 +15,9 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(appBar: AppBar(
+        title: const Text('Spells'),
+      ),);
   }
 
 }

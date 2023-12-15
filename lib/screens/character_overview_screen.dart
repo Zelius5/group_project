@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:project3/ProductDataModel.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
+import 'package:project3/screens/character_bio_screen.dart';
+import 'package:project3/screens/character_extras_screen.dart';
+import 'package:project3/screens/character_spells_screen.dart';
+import 'package:project3/screens/character_stats_screen.dart';
 
 class CharacterOverviewScreen extends StatefulWidget {
   final int? characterId;
@@ -15,11 +19,37 @@ class CharacterOverviewScreen extends StatefulWidget {
 
 class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
-
+  int _currentIndex = 0;
   @override
   void initState() {
     super.initState();
     _futureCharacters = readJsonData();
+  }
+
+  void navigateExtraScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return CharacterExtrasScreen();
+    }));
+  }
+  void navigateBioScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return CharacterBioScreen();
+    }));
+  }
+  void navigateSpellsScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return CharacterSpellsScreen();
+    }));
+  }
+  void navigateOverviewScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return CharacterOverviewScreen();
+    }));
+  }
+  void navigateStatsScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return CharacterStatsScreen();
+    }));
   }
 
   Future<List<ProductDataModel>> readJsonData() async {
@@ -242,6 +272,56 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
             return Center(child: CircularProgressIndicator());
           }
         },
+      ),
+        bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Color.fromARGB(255, 8, 0, 2),
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+          // Handle navigation to different screens based on the index
+          switch (index) {
+            case 0:
+              navigateBioScreen(context);
+              break;
+            case 1:
+              navigateStatsScreen(context);
+              break;
+            case 2:
+              navigateExtraScreen(context);
+              break;
+            case 3:
+              navigateSpellsScreen(context);
+              break;
+            
+          }
+        },
+        
+        items:const <BottomNavigationBarItem> [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Overview',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: 'Stats',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box),
+            label: 'Extras',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Spells',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.accessibility),
+            label: 'Bio',
+          ),
+        ],
       ),
     );
   }
