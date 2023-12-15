@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project3/ProductDataModel.dart';
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart' as rootBundle;
+import 'package:project3/screens/character_overview_screen.dart';
 import 'package:project3/screens/character_bio_screen.dart';
 import 'package:project3/screens/character_extras_screen.dart';
 import 'package:project3/screens/character_spells_screen.dart';
@@ -19,11 +21,13 @@ class CharacterOverviewScreen extends StatefulWidget {
 
 class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
+  late TextEditingController nameController;
   int _currentIndex = 0;
   @override
   void initState() {
     super.initState();
     _futureCharacters = readJsonData();
+    late TextEditingController nameController;
   }
 
   void navigateExtraScreen(BuildContext ctx) {
@@ -52,6 +56,24 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
     }));
   }
 
+  void saveChanges(List<ProductDataModel> characters) {
+    updateCharacterData(characters).then((_) {
+      setState(() {
+        // Update your UI or refresh the data after saving changes
+        // This will reflect the changes made to the JSON file
+      });
+    });
+  }
+  Future<void> updateCharacterData(List<ProductDataModel> characters) async {
+  final file = File('jsonfile/productlist.json');
+
+  // Convert characters to JSON
+  List<Map<String, dynamic>> jsonList = characters.map((character) => character.toJson()).toList();
+
+  // Write the JSON data to the file
+  await file.writeAsString(json.encode(jsonList));
+}
+
   Future<List<ProductDataModel>> readJsonData() async {
     final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
     final list = json.decode(jsondata) as List<dynamic>;
@@ -73,7 +95,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
               (character) => character.id == widget.characterId,
               orElse: () => ProductDataModel(), 
             );
-
+        
             return Center(
                           child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,12 +106,22 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                       SizedBox(width: 50),
                       Expanded(
                         child: TextField(
+                          textAlign: TextAlign.left,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedCharacter.name = value;
+                            });
+                          },
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.name ?? ''),
                           decoration: InputDecoration(
                             labelText: 'Name',
                             border: OutlineInputBorder(),
                           ),
+                          
+                          onEditingComplete: () {
+                            saveChanges(items); // Save changes when editing 'Name' is complete
+                          },
                         ),
                       ),
                       SizedBox(width: 20), // Adjust the width between items as needed
@@ -261,7 +293,9 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                       ),
                       SizedBox(width: 50),
                     ],
+
                   ),
+                  
                   SizedBox(height: 10), // Add space between rows
                 ],
               ),
