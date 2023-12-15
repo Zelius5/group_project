@@ -30,24 +30,24 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
     _futureCharacters = readJsonData();
   }
 
-  void navigateExtraScreen(BuildContext ctx) {
+  void navigateExtraScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterExtrasScreen();
+      return CharacterExtrasScreen(characterId: id);
     }));
   }
-  void navigateBioScreen(BuildContext ctx) {
+  void navigateBioScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterBioScreen();
+      return CharacterBioScreen(characterId: id);
     }));
   }
-  void navigateOverviewScreen(BuildContext ctx) {
+  void navigateOverviewScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterOverviewScreen();
+      return CharacterOverviewScreen(characterId: id);
     }));
   }
-  void navigateStatsScreen(BuildContext ctx) {
+  void navigateStatsScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterStatsScreen();
+      return CharacterStatsScreen(characterId: id);
     }));
   }
 
@@ -111,18 +111,18 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
           // Handle navigation to different screens based on the index
           switch (index) {
             case 0:
-              navigateOverviewScreen(context);
+              navigateOverviewScreen(context, 1);
               break;
             case 1:
-              navigateStatsScreen(context);
+              navigateStatsScreen(context, 1);
               break;
             case 2:
-              navigateExtraScreen(context);
+              navigateExtraScreen(context, 1);
               break;
             case 3:
               break;
             case 4:
-              navigateBioScreen(context);
+              navigateBioScreen(context, 1);
               break;
           }
         },

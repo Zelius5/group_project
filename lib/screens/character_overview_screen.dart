@@ -31,24 +31,24 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
     late TextEditingController nameController;
   }
 
-  void navigateExtraScreen(BuildContext ctx) {
+  void navigateExtraScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterExtrasScreen();
+      return CharacterExtrasScreen(characterId: id);
     }));
   }
-  void navigateBioScreen(BuildContext ctx) {
+  void navigateBioScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterBioScreen();
+      return CharacterBioScreen(characterId: id);
     }));
   }
-  void navigateSpellsScreen(BuildContext ctx) {
+  void navigateSpellsScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterSpellsScreen();
+      return CharacterSpellsScreen(characterId: id);
     }));
   }
-  void navigateStatsScreen(BuildContext ctx) {
+  void navigateStatsScreen(BuildContext ctx, int id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CharacterStatsScreen();
+      return CharacterStatsScreen(characterId: id);
     }));
   }
 
@@ -102,10 +102,10 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                       SizedBox(width: 50),
                       Expanded(
                         child: TextField(
-                          textAlign: TextAlign.left,
                           onChanged: (value) {
                             setState(() {
                               selectedCharacter.name = value;
+                              
                             });
                           },
                           readOnly: false,
@@ -327,16 +327,16 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
             case 0:
               break;
             case 1:
-              navigateStatsScreen(context);
+              navigateStatsScreen(context, 1);
               break;
             case 2:
-              navigateExtraScreen(context);
+              navigateExtraScreen(context, 1);
               break;
             case 3:
-              navigateSpellsScreen(context);
+              navigateSpellsScreen(context, 1);
               break;
             case 4:
-              navigateBioScreen(context);
+              navigateBioScreen(context, 1);
               break;
           }
         },
