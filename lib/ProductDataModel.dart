@@ -56,6 +56,7 @@ class ProductDataModel {
   String? backstory;
   String? featuresOrTraits;
   String? treasure;
+  String? spells;
 
   ProductDataModel({
     this.id,
@@ -115,6 +116,7 @@ class ProductDataModel {
     this.backstory,
     this.featuresOrTraits,
     this.treasure,
+    this.spells,
   });
 
   Map<String, dynamic> toJson() {
@@ -176,6 +178,7 @@ class ProductDataModel {
       'Backstory': backstory,
       'FeaturesorTraits': featuresOrTraits,
       'Treasure': treasure,
+      'Spells': spells,
     };
   }
   factory ProductDataModel.fromJson(Map<String, dynamic> json) {
@@ -237,6 +240,7 @@ class ProductDataModel {
       backstory: json['Backstory'],
       featuresOrTraits: json['FeaturesorTraits'],
       treasure: json['Treasure'],
+      spells: json['Spells'],
     );
   }
 }

@@ -73,7 +73,8 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
               (character) => character.id == widget.characterId,
               orElse: () => ProductDataModel(), 
             );
-            return Center(
+            return SingleChildScrollView(
+              child: Center(
               child: Row(
                 children: [
                   Expanded(
@@ -616,8 +617,10 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                     ),
                   ),
                 ],
-              ),
-            );
+              )
+            ),
+          );
+            
           } else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: 16)));
           } else {

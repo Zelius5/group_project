@@ -81,7 +81,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
                           maxLines: 20,
                           readOnly: false,
                           //TODO - Add "Spells" to the JSON file and change this textfield to spells
-                          controller: TextEditingController(text: selectedCharacter.background ?? ''),
+                          controller: TextEditingController(text: selectedCharacter.spells ?? ''),
                           decoration: const InputDecoration(
                             labelText: 'Spells',
                             border: OutlineInputBorder(),
