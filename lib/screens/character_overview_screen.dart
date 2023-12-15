@@ -117,8 +117,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           
                           onEditingComplete: () {
                             saveChanges(items); // Save changes when editing 'Name' is complete
-                          },
-                          ), 
+                          }, 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
