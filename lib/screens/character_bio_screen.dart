@@ -142,7 +142,7 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
                     Expanded(
                       child: TextField(
                         minLines: 1,
-                        maxLines: 10,
+                        maxLines: 15,
                         readOnly: false,
                         controller: TextEditingController(text: selectedCharacter.inventory ?? ''),
                         decoration: InputDecoration(

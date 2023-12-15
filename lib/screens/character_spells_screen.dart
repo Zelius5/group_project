@@ -9,7 +9,11 @@ import 'character_extras_screen.dart';
 import 'character_stats_screen.dart';
 
 class CharacterSpellsScreen extends StatefulWidget {
-  const CharacterSpellsScreen({Key? key}) : super(key: key);
+
+  final int? characterId;
+
+
+  const CharacterSpellsScreen({Key? key, this.characterId}) : super(key: key);
 
   @override
   _CharacterSpellsScreenState createState() => _CharacterSpellsScreenState();
@@ -19,6 +23,12 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
 
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureCharacters = readJsonData();
+  }
 
   void navigateExtraScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
@@ -41,10 +51,53 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
     }));
   }
 
+  Future<List<ProductDataModel>> readJsonData() async {
+    final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
+    final list = json.decode(jsondata) as List<dynamic>;
+    return list.map((e) => ProductDataModel.fromJson(e)).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
         title: const Text('Spells'),
+      ),
+      body: FutureBuilder<List<ProductDataModel>>(
+        future: _futureCharacters,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var items = snapshot.data!;
+            var selectedCharacter = items.firstWhere(
+              (character) => character.id == widget.characterId,
+              orElse: () => ProductDataModel(), 
+            );
+            return Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(width:50, height: 50),
+                  Expanded(child: TextField(
+                          minLines: 1,
+                          maxLines: 20,
+                          readOnly: false,
+                          //TODO - Add "Spells" to the JSON file and change this textfield to spells
+                          controller: TextEditingController(text: selectedCharacter.background ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Spells',
+                            border: OutlineInputBorder(),
+                          ), 
+                          style: TextStyle(fontSize: dynamicFontSizeText)
+                        ),),
+                  SizedBox(height: 50, width: 50),
+                ],
+              )
+            );
+          }else if (snapshot.hasError) {
+            return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

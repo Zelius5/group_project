@@ -10,7 +10,10 @@ import 'character_stats_screen.dart';
 
 
 class CharacterExtrasScreen extends StatefulWidget {
-  const CharacterExtrasScreen({Key? key}) : super(key: key);
+
+  final int? characterId;
+
+  const CharacterExtrasScreen({Key? key, this.characterId}) : super(key: key);
 
   @override
   _CharacterExtrasScreenState createState() => _CharacterExtrasScreenState();
@@ -20,6 +23,12 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
 
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureCharacters = readJsonData();
+  }
 
   void navigateBioScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
@@ -42,10 +51,120 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
     }));
   }
 
+  Future<List<ProductDataModel>> readJsonData() async {
+    final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
+    final list = json.decode(jsondata) as List<dynamic>;
+    return list.map((e) => ProductDataModel.fromJson(e)).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
         title: const Text('Character Extras'),
+      ),body: FutureBuilder<List<ProductDataModel>>(
+        future: _futureCharacters,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var items = snapshot.data!;
+            var selectedCharacter = items.firstWhere(
+              (character) => character.id == widget.characterId,
+              orElse: () => ProductDataModel(), 
+            );
+
+            return Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10),
+                  Row(//#1
+                    children: [
+                      SizedBox(width: 50),
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterAppearance ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Appearance',
+                            border: OutlineInputBorder(),
+                          ), 
+                          style: TextStyle(fontSize: dynamicFontSizeText)
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.alliesAndOrg ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Allies',
+                            border: OutlineInputBorder(),
+                          ), 
+                          style: TextStyle(fontSize: dynamicFontSizeText)
+                        ),
+                      ),
+                      SizedBox(width: 50),
+                    ]
+                  ),
+                  SizedBox(height: 20),
+                  Row(//#1
+                    children: [
+                      SizedBox(width: 50),
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.backstory ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Backstory',
+                            border: OutlineInputBorder(),
+                          ), 
+                          style: TextStyle(fontSize: dynamicFontSizeText)
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.treasure ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Treasure',
+                            border: OutlineInputBorder(),
+                          ), 
+                          style: TextStyle(fontSize: dynamicFontSizeText)
+                        ),
+                      ),
+                      SizedBox(width: 50),
+                    ]
+                  ),
+                  SizedBox(height: 50),
+                  Row(
+                    children: [
+                    SizedBox(width: 50),
+                    Expanded(
+                      child: TextField(
+                        minLines: 1,
+                        maxLines: 15,
+                        readOnly: false,
+                        controller: TextEditingController(text: selectedCharacter.featuresOrTraits ?? ''),
+                        decoration: InputDecoration(
+                          labelText: 'Features/Traits',
+                          border: OutlineInputBorder(),
+                        ),
+                        style: TextStyle(fontSize: dynamicFontSizeText)
+                      ),
+                      ),
+                      SizedBox(width: 50),
+                    ],
+                  ),
+                  
+                ],
+              )
+            );
+          }else if (snapshot.hasError) {
+            return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
        bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
