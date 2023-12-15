@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '/screens/character_overview.dart';
+import '/screens/character_overview_screen.dart';
 import 'package:project3/ProductDataModel.dart';
-import 'character_overview_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
 

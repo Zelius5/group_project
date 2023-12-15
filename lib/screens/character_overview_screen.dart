@@ -44,13 +44,168 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
             );
 
             return Center(
-              child: Column(
+                          child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Name: ${selectedCharacter.name ?? ''}'),
-                  Text('Class: ${selectedCharacter.characterClass ?? ''}'),
-                  Text('Level: ${selectedCharacter.level ?? ''}'),
-                  Text('Background: ${selectedCharacter.background ?? ''}'),
+                  SizedBox(height: 10),
+                  Row(//#1
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.name ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20), // Adjust the width between items as needed
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.level != null ? selectedCharacter.level.toString() : ''),
+                          decoration: InputDecoration(
+                            labelText: 'Level',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#2
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Class',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                      SizedBox(width: 20), // Adjust the width between items as needed
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.background ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Background',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#3
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.exp ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'EXP',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#4
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Class',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#5
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Class',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#6
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Class',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#7
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Class',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#8
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Class',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10), // Add space between rows
+                  Row(//#9
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          readOnly: false,
+                          controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
+                          decoration: InputDecoration(
+                            labelText: 'Class',
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter a search term',),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             );
