@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project3/ProductDataModel.dart';
+import 'character_overview_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
 
@@ -17,6 +18,12 @@ class _CharacterScreenState extends State<CharacterScreen> {
   void initState() {
     super.initState();
     _futureCharacters = readJsonData();
+  }
+
+  void navigateCharacterOverviewScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return CharacterOverviewScreen();
+    }));
   }
 
   @override
