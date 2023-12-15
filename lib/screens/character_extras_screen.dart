@@ -12,11 +12,14 @@ import 'character_stats_screen.dart';
 class CharacterExtrasScreen extends StatefulWidget {
 
   final int? characterId;
+  
 
   const CharacterExtrasScreen({Key? key, this.characterId}) : super(key: key);
 
+
   @override
   _CharacterExtrasScreenState createState() => _CharacterExtrasScreenState();
+
 }
 
 class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
@@ -30,22 +33,22 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
     _futureCharacters = readJsonData();
   }
 
-  void navigateBioScreen(BuildContext ctx, int id) {
+  void navigateBioScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterBioScreen(characterId: id);
     }));
   }
-  void navigateSpellsScreen(BuildContext ctx, int id) {
+  void navigateSpellsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterSpellsScreen(characterId: id);
     }));
   }
-  void navigateOverviewScreen(BuildContext ctx, int id) {
+  void navigateOverviewScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterOverviewScreen(characterId: id);
     }));
   }
-  void navigateStatsScreen(BuildContext ctx, int id) {
+  void navigateStatsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterStatsScreen(characterId: id);
     }));
@@ -56,6 +59,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
     final list = json.decode(jsondata) as List<dynamic>;
     return list.map((e) => ProductDataModel.fromJson(e)).toList();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -178,18 +182,18 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
           // Handle navigation to different screens based on the index
           switch (index) {
             case 0:
-              navigateOverviewScreen(context, 1);
+              navigateOverviewScreen(context, widget.characterId);
               break;
             case 1:
-              navigateStatsScreen(context, 1);
+              navigateStatsScreen(context, widget.characterId);
               break;
             case 2:
               break;
             case 3:
-              navigateSpellsScreen(context, 1);
+              navigateSpellsScreen(context, widget.characterId);
               break;
             case 4:
-              navigateBioScreen(context, 1);
+              navigateBioScreen(context, widget.characterId);
               break;
           }
         },

@@ -31,22 +31,22 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
     late TextEditingController nameController;
   }
 
-  void navigateExtraScreen(BuildContext ctx, int id) {
+  void navigateExtraScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterExtrasScreen(characterId: id);
     }));
   }
-  void navigateBioScreen(BuildContext ctx, int id) {
+  void navigateBioScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterBioScreen(characterId: id);
     }));
   }
-  void navigateSpellsScreen(BuildContext ctx, int id) {
+  void navigateSpellsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterSpellsScreen(characterId: id);
     }));
   }
-  void navigateStatsScreen(BuildContext ctx, int id) {
+  void navigateStatsScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterStatsScreen(characterId: id);
     }));
@@ -327,16 +327,16 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
             case 0:
               break;
             case 1:
-              navigateStatsScreen(context, 1);
+              navigateStatsScreen(context, widget.characterId);
               break;
             case 2:
-              navigateExtraScreen(context, 1);
+              navigateExtraScreen(context, widget.characterId);
               break;
             case 3:
-              navigateSpellsScreen(context, 1);
+              navigateSpellsScreen(context, widget.characterId);
               break;
             case 4:
-              navigateBioScreen(context, 1);
+              navigateBioScreen(context, widget.characterId);
               break;
           }
         },
