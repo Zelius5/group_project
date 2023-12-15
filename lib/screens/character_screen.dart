@@ -43,13 +43,13 @@ class _CharacterScreenState extends State<CharacterScreen> {
             color: Colors.white,
           ),
         ),
-        title: Text('Characters'),
+        title: const Text('Characters'),
       ),
       body: FutureBuilder<List<ProductDataModel>>(
         future: _futureCharacters,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else if (snapshot.hasData) {
@@ -59,7 +59,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 5,
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(items[index].imageURL ?? ''),

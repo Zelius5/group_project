@@ -75,27 +75,27 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(width:50, height: 50),
+                  const SizedBox(width:50, height: 50),
                   Expanded(child: TextField(
                           minLines: 1,
                           maxLines: 20,
                           readOnly: false,
                           //TODO - Add "Spells" to the JSON file and change this textfield to spells
                           controller: TextEditingController(text: selectedCharacter.background ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Spells',
                             border: OutlineInputBorder(),
                           ), 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),),
-                  SizedBox(height: 50, width: 50),
+                  const SizedBox(height: 50, width: 50),
                 ],
               )
             );
           }else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -103,7 +103,7 @@ class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Color.fromARGB(255, 8, 0, 2),
+        unselectedItemColor: const Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
           setState(() {
             _currentIndex = index;

@@ -80,7 +80,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Character Overview'),
+        title: const Text('Character Overview'),
       ),
       body: FutureBuilder<List<ProductDataModel>>(
         future: _futureCharacters,
@@ -96,10 +96,10 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(//#1
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           onChanged: (value) {
@@ -110,7 +110,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           },
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.name ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Name',
                             border: OutlineInputBorder(),
                           ),
@@ -121,7 +121,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 20), // Adjust the width between items as needed
+                      const SizedBox(width: 20), // Adjust the width between items as needed
                       Expanded(
                         child: TextField(
                           readOnly: false,
@@ -130,19 +130,19 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Level',
                             border: OutlineInputBorder(),), 
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ],
                   ),
-                  SizedBox(height: 10), // Add space between rows 
+                  const SizedBox(height: 10), // Add space between rows 
                   Row(//#2
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
@@ -151,18 +151,18 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'EXP',
                             border: OutlineInputBorder(),),
                             style: TextStyle(fontSize: dynamicFontSizeText)),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ],
                   ),
-                  SizedBox(height: 10), // Add space between rows
+                  const SizedBox(height: 10), // Add space between rows
                   Row(//#3
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
@@ -171,13 +171,13 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Max HP',
                             border: OutlineInputBorder(),), 
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: TextField(
                           readOnly: false,
@@ -186,13 +186,13 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Current HP',
                             border: OutlineInputBorder(),), 
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: TextField(
                           readOnly: false,
@@ -201,19 +201,19 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Temporary HP',
                             border: OutlineInputBorder(),),
                              style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                       SizedBox(width: 50),
+                       const SizedBox(width: 50),
                     ],
                   ),
-                  SizedBox(height: 10), // Add space between rows
+                  const SizedBox(height: 10), // Add space between rows
                   Row(//#4
                     children: [
-                      SizedBox(width: 100),
+                      const SizedBox(width: 100),
                       Expanded(
                         child: TextField(
                           readOnly: false,
@@ -222,94 +222,94 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Hit Dice Remaining',
                             border: OutlineInputBorder(),), 
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 100),
+                      const SizedBox(width: 100),
                     ],
                   ),
-                  SizedBox(height: 10), // Add space between rows
+                  const SizedBox(height: 10), // Add space between rows
                   Row(//#5
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Class',
                             border: OutlineInputBorder(),), 
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ],
                   ),
                   
-                  SizedBox(height: 10), // Add space between rows
+                  const SizedBox(height: 10), // Add space between rows
                   Row(//#6
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.race ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Race',
                             border: OutlineInputBorder(),),
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ],
                   ),
-                  SizedBox(height: 10), // Add space between rows
+                  const SizedBox(height: 10), // Add space between rows
                   Row(//#7
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.background ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Background',
                             border: OutlineInputBorder(),), 
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                     const SizedBox(width: 50),
                     ],
                   ),
-                  SizedBox(height: 10), // Add space between rows
+                  const SizedBox(height: 10), // Add space between rows
                   Row(//#8
                     children: [
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       Expanded(
                         child: TextField(
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.alignment ?? ''),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Alignment',
                             border: OutlineInputBorder(),), 
                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                     ],
 
                   ),
                   
-                  SizedBox(height: 10), // Add space between rows
+                  const SizedBox(height: 10), // Add space between rows
                 ],
               ),
             );
           } else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -317,7 +317,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Color.fromARGB(255, 8, 0, 2),
+        unselectedItemColor:const  Color.fromARGB(255, 8, 0, 2),
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
