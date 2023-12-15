@@ -87,8 +87,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
               (character) => character.id == widget.characterId,
               orElse: () => ProductDataModel(), 
             );
-        
-            return Center(
+            return SingleChildScrollView(child: Center(
                           child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -297,7 +296,9 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                   const SizedBox(height: 10), // Add space between rows
                 ],
               ),
-            );
+            ),
+          );
+            
           } else if (snapshot.hasError) {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
