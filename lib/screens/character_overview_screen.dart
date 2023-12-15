@@ -103,21 +103,15 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                       Expanded(
                         child: TextField(
                           textAlign: TextAlign.left,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedCharacter.name = value;
-                            });
-                          },
                           readOnly: false,
                           controller: TextEditingController(text: selectedCharacter.name ?? ''),
                           decoration: InputDecoration(
                             labelText: 'Name',
                             border: OutlineInputBorder(),
-                          ),
-                          
-                          onEditingComplete: () {
-                            saveChanges(items); // Save changes when editing 'Name' is complete
-                          }, 
+                          ),                         
+                          // onEditingComplete: () {
+                          //   saveChanges(items); // Save changes when editing 'Name' is complete
+                          // }, 
                           style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
