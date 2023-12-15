@@ -7,6 +7,7 @@ import 'package:project3/screens/character_bio_screen.dart';
 import 'package:project3/screens/character_extras_screen.dart';
 import 'package:project3/screens/character_spells_screen.dart';
 import 'package:project3/screens/character_stats_screen.dart';
+import '/screens/settings_screen.dart';
 
 class CharacterOverviewScreen extends StatefulWidget {
   final int? characterId;
@@ -89,7 +90,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           decoration: InputDecoration(
                             labelText: 'Name',
                             border: OutlineInputBorder(),
-                          ),
+                          ), 
+                          style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 20), // Adjust the width between items as needed
@@ -103,7 +105,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           ],
                           decoration: InputDecoration(
                             labelText: 'Level',
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(),), 
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 50),
@@ -124,7 +127,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           decoration: InputDecoration(
                             labelText: 'EXP',
                             border: OutlineInputBorder(),),
-                        ),
+                            style: TextStyle(fontSize: dynamicFontSizeText)),
                       ),
                       SizedBox(width: 50),
                     ],
@@ -143,7 +146,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           ],
                           decoration: InputDecoration(
                             labelText: 'Max HP',
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(),), 
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 20),
@@ -157,7 +161,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           ],
                           decoration: InputDecoration(
                             labelText: 'Current HP',
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(),), 
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 20),
@@ -172,6 +177,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           decoration: InputDecoration(
                             labelText: 'Temporary HP',
                             border: OutlineInputBorder(),),
+                             style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                        SizedBox(width: 50),
@@ -191,7 +197,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           ],
                           decoration: InputDecoration(
                             labelText: 'Hit Dice Remaining',
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(),), 
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 100),
@@ -207,7 +214,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           controller: TextEditingController(text: selectedCharacter.characterClass ?? ''),
                           decoration: InputDecoration(
                             labelText: 'Class',
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(),), 
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 50),
@@ -225,6 +233,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           decoration: InputDecoration(
                             labelText: 'Race',
                             border: OutlineInputBorder(),),
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 50),
@@ -240,7 +249,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           controller: TextEditingController(text: selectedCharacter.background ?? ''),
                           decoration: InputDecoration(
                             labelText: 'Background',
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(),), 
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 50),
@@ -256,7 +266,8 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                           controller: TextEditingController(text: selectedCharacter.alignment ?? ''),
                           decoration: InputDecoration(
                             labelText: 'Alignment',
-                            border: OutlineInputBorder(),),
+                            border: OutlineInputBorder(),), 
+                            style: TextStyle(fontSize: dynamicFontSizeText)
                         ),
                       ),
                       SizedBox(width: 50),
@@ -267,7 +278,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
               ),
             );
           } else if (snapshot.hasError) {
-            return Center(child: Text("${snapshot.error}"));
+            return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else {
             return Center(child: CircularProgressIndicator());
           }
