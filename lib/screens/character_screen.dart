@@ -12,6 +12,7 @@ class CharacterScreen extends StatefulWidget {
   _CharacterScreenState createState() => _CharacterScreenState();
 }
 
+//here we push information to the next screen
 class _CharacterScreenState extends State<CharacterScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
   void navigateOverviewScreen(BuildContext ctx) {
@@ -24,13 +25,13 @@ class _CharacterScreenState extends State<CharacterScreen> {
     super.initState();
     _futureCharacters = readJsonData();
   }
-
+  //navigation code in order to go to overview
   void navigateCharacterOverviewScreen(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterOverviewScreen();
     }));
   }
-
+  //main set up the scaffold
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,6 +46,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
         ),
         title: const Text('Characters'),
       ),
+
       body: FutureBuilder<List<ProductDataModel>>(
         future: _futureCharacters,
         builder: (context, snapshot) {
@@ -54,6 +56,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
             return Center(child: Text("${snapshot.error}", style: TextStyle(fontSize: dynamicFontSizeText)));
           } else if (snapshot.hasData) {
             var items = snapshot.data!;
+            //here we make a listview in order to list out all the characers that are in the json
             return ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
@@ -61,10 +64,11 @@ class _CharacterScreenState extends State<CharacterScreen> {
                   elevation: 5,
                   margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: ListTile(
+                    //we use this in order to give each card an image icon
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(items[index].imageURL ?? ''),
                     ),
-                    
+                    //here we give title and subtitles
                     title: Text(items[index].playerName ?? '', style: TextStyle(fontSize: dynamicFontSizeText)),
                     subtitle: Text('Class: ${items[index].characterClass ?? ''}, Level: ${items[index].level ?? ''}', style: TextStyle(fontSize: dynamicFontSizeText)),
                     onTap: () {
@@ -87,7 +91,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
     )
     );
   }
-
+  //this is where we read the json data
   Future<List<ProductDataModel>> readJsonData() async {
     try {
       final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');

@@ -22,6 +22,7 @@ class CharacterSpellsScreen extends StatefulWidget {
 class _CharacterSpellsScreenState extends State<CharacterSpellsScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
 
+  // ignore: unused_field
   int _currentIndex = 0;
 
   @override

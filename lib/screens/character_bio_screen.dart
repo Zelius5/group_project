@@ -22,6 +22,7 @@ class CharacterBioScreen extends StatefulWidget {
 class _CharacterBioScreenState extends State<CharacterBioScreen> {
   late Future<List<ProductDataModel>> _futureCharacters;
 
+  // ignore: unused_field
   int _currentIndex = 0;
 
   @override
