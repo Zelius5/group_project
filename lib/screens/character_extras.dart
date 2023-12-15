@@ -15,7 +15,9 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(appBar: AppBar(
+        title: const Text('Character Extras'),
+      ),);
   }
 
 }

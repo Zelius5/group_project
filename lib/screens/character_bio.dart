@@ -15,7 +15,9 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(appBar: AppBar(
+        title: const Text('Character Biography'),
+      ),);
   }
 
 }
