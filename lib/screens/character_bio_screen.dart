@@ -29,9 +29,7 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
     super.initState();
     _futureCharacters = readJsonData();
   }
-
-  
-
+  //in the following lines, it is used to navigate through the navbar
   void navigateExtraScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterExtrasScreen(characterId: id);
@@ -52,7 +50,7 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
       return CharacterStatsScreen(characterId: id);
     }));
   }
-
+  //Here we read the data from the json data
   Future<List<ProductDataModel>> readJsonData() async {
     final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
     final list = json.decode(jsondata) as List<dynamic>;
@@ -74,12 +72,13 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
               (character) => character.id == widget.characterId,
               orElse: () => ProductDataModel(), 
             );
-
+            //here we create our rows and columns in order to display our fields
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
+                  //in the following lines we create rows with fields where we can display the information from the correct character
                   Row(//#1
                     children: [
                       const SizedBox(width: 50),
@@ -170,6 +169,7 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
           }
         },
       ),
+      //creation of the navbar 
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex = 4,
@@ -198,7 +198,7 @@ class _CharacterBioScreenState extends State<CharacterBioScreen> {
               break;
           }
         },
-        
+        //set up of the bottons and icons for the navbar
         items:const <BottomNavigationBarItem> [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

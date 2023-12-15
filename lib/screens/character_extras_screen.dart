@@ -32,7 +32,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
     super.initState();
     _futureCharacters = readJsonData();
   }
-
+  //code used to navigate through the navbar
   void navigateBioScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterBioScreen(characterId: id);
@@ -53,7 +53,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
       return CharacterStatsScreen(characterId: id);
     }));
   }
-
+  //code to read from the JSON data file
   Future<List<ProductDataModel>> readJsonData() async {
     final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
     final list = json.decode(jsondata) as List<dynamic>;
@@ -74,12 +74,13 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
               (character) => character.id == widget.characterId,
               orElse: () => ProductDataModel(), 
             );
-
+            //here we create our rows and column in order to display information
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
+                  //in the following rows we pull the information from the correct character and display
                   Row(//#1
                     children: [
                       const SizedBox(width: 50),
@@ -170,6 +171,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
           }
         },
       ),
+      //set up for navbar 
        bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex = 2,
@@ -179,7 +181,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
           setState(() {
             _currentIndex = index;
           });
-          // Handle navigation to different screens based on the index
+          // Handle navigation to different screens based on the index along with pulling the ID to display the info 
           switch (index) {
             case 0:
               navigateOverviewScreen(context, widget.characterId);
@@ -197,7 +199,7 @@ class _CharacterExtrasScreenState extends State<CharacterExtrasScreen> {
               break;
           }
         },
-        
+        //navbar bottons set up with icons
         items:const <BottomNavigationBarItem> [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

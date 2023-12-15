@@ -28,7 +28,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
     super.initState();
     _futureCharacters = readJsonData();
   }
-
+//this is where all the navigation code is used in the navbar
   void navigateExtraScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterExtrasScreen(characterId: id);
@@ -49,12 +49,10 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
       return CharacterStatsScreen(characterId: id);
     }));
   }
-
+//this is supposed to be used with editing but failed to implement
   void saveChanges(List<ProductDataModel> characters) {
     updateCharacterData(characters).then((_) {
       setState(() {
-        // Update your UI or refresh the data after saving changes
-        // This will reflect the changes made to the JSON file
       });
     });
   }
@@ -67,7 +65,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
   // Write the JSON data to the file
   await file.writeAsString(json.encode(jsonList));
 }
-
+  //this is where we read the JSON data
   Future<List<ProductDataModel>> readJsonData() async {
     final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
     final list = json.decode(jsondata) as List<dynamic>;
@@ -95,6 +93,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
+                  //in the following code in each row we are making textfields and pulling the information from the approriate character selected
                   Row(//#1
                     children: [
                       const SizedBox(width: 50),
@@ -277,6 +276,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
                   ),
                   const SizedBox(height: 10), // Add space between rows
                   Row(//#8
+                
                     children: [
                       const SizedBox(width: 50),
                       Expanded(
@@ -305,6 +305,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
           }
         },
       ),
+      //this is our bottom nav bar set up
         bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
@@ -314,7 +315,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
           setState(() {
             _currentIndex = index;
           });
-          // Handle navigation to different screens based on the index
+          // Handle navigation to different screens based on the index along with sending information out to other screens
           switch (index) {
             case 0:
               break;
@@ -332,7 +333,7 @@ class _CharacterOverviewScreenState extends State<CharacterOverviewScreen> {
               break;
           }
         },
-        
+        //setting up of the buttons and icons in the navbar
         items:const <BottomNavigationBarItem> [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

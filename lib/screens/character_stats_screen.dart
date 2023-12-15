@@ -28,13 +28,13 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
     super.initState();
     _futureCharacters = readJsonData();
   }
-  
+  //code to read json
   Future<List<ProductDataModel>> readJsonData() async {
     final jsondata = await rootBundle.rootBundle.loadString('jsonfile/productlist.json');
     final list = json.decode(jsondata) as List<dynamic>;
     return list.map((e) => ProductDataModel.fromJson(e)).toList();
   }
-  
+  //following lines are used to navigate between screens in the navbar
   void navigateBioScreen(BuildContext ctx, int? id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return CharacterBioScreen(characterId: id);
@@ -58,7 +58,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
       return CharacterExtrasScreen(characterId: id);
     }));
   }
-
+  //this is where all columns and rows are set up
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,15 +74,18 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
               (character) => character.id == widget.characterId,
               orElse: () => ProductDataModel(), 
             );
+            //scrolling function in order to scroll either down or up the screen
             return SingleChildScrollView(
               child: Center(
               child: Row(
                 children: [
                   Expanded(
+                    //column for the main attributes
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 10), // Add space between rows
+                        SizedBox(height: 10), // Add space between rows 
+                        //following lines is where we have rows for each field and grabbing the necessary information from json
                         Row(//#1
                           children: [
                             const SizedBox(width: 50),
@@ -208,11 +211,13 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                     ),
                     
                   ),
+                  //the other column here is for saving throws and skill checks
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 10),
+                        //added a container in order to display a title
                         Row(//#1
                           children: [
                             const SizedBox(width: 200),
@@ -235,6 +240,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                           ],
                         ),
                         const SizedBox(height: 25),
+                        //following lines and rows is where we display the information we grabbed from the json
                         Row(//#2
                           children: [
                             const SizedBox(width: 50),
@@ -521,7 +527,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                            const SizedBox(width: 50),
                           ],
                         ),
-                        Row(//#11
+                        Row(//#12
                           children: [
                             const SizedBox(width: 50),
                             Expanded(
@@ -552,7 +558,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                            const SizedBox(width: 50),
                           ],
                         ),
-                        Row(//#11
+                        Row(//#13
                           children: [
                             const SizedBox(width: 50),
                             Expanded(
@@ -583,7 +589,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
                            const SizedBox(width: 50),
                           ],
                         ),
-                        Row(//#11
+                        Row(//#14
                           children: [
                             const SizedBox(width: 50),
                             Expanded(
@@ -629,6 +635,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
           }
         },
       ),
+      //code in order to set up navbar
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex = 1,
@@ -639,7 +646,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
           setState(() {
             _currentIndex = index;
           });
-          // Handle navigation to different screens based on the index
+          // Handle navigation to different screens based on the index along with pushing the Id in order to pull information
           switch (index) {
             case 0:
               navigateOverviewScreen(context, widget.characterId);
@@ -657,6 +664,7 @@ class _CharacterStatsScreenState extends State<CharacterStatsScreen> {
               break;
           }
         },
+        //This is where we have our buttons laid out with icons
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
